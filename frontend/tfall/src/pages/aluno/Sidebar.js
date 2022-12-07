@@ -29,7 +29,6 @@ const Sidebar = () => {
 
   useEffect(() => {
     const getUser = async (token) => {
-      let id = parseInt(token);
       const { data } = await axios(`http://127.0.0.1:8000/api/users/`);
       console.log(data);
     };

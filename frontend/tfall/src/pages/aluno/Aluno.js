@@ -26,10 +26,20 @@ function Aluno() {
 
   useEffect(() => {
     const getUser = async () => {
-      const { data } = await axios(`http://127.0.0.1:8000/api/aluno/`);
-      setUser(data);
-      console.log(data);
+      const { data } = await axios(`http://127.0.0.1:8000/api/aluno/`, {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     };
+    setUser();
+
     getUser();
   }, []);
 
@@ -62,9 +72,7 @@ function Aluno() {
           {/* <div className="lead mt-2 py-r border-bottom">Olá, {user.nome}</div> */}
 
           <Row>
-            <Col xs="4">
-              <Sidebar />
-            </Col>
+            <Col xs="4">{/* <Sidebar /> */}</Col>
             <Col xs="8">
               <CDBCardBody className="py-1" style={{ padding: "20px" }}>
                 <p>
