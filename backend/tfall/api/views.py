@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import authentication,permissions
+from rest_framework import authentication,permissions,viewsets
 from django.contrib.auth.models import User
+from .serializers import AlunoSerializer,DicaSerializer,ProfessorSerializer,UserSerializer
+from .models import Aluno,Dicas,Professor
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+
+
+
 
 class ListUsers(APIView):
   """
@@ -33,5 +38,24 @@ class CustomAuthToken(ObtainAuthToken):
     return Response({
       'token':token.key,
       'user_id':user.pk,
-      'email':user.email
+      'username':user.username,
+      'first_name':user.first_name
     })
+  
+class UserViewSet(viewsets.ModelViewSet):
+  queryset=User.objects.all()
+  serializer_class=UserSerializer
+
+class AlunoViewSet(viewsets.ModelViewSet):
+  queryset = Aluno.objects.all()
+  serializer_class=AlunoSerializer
+
+class ProfessorViewSet(viewsets.ModelViewSet):
+  queryset = Professor.objects.all()
+  serializer_class=ProfessorSerializer
+
+class DicaViewSet(viewsets.ModelViewSet):
+  queryset = Dicas.objects.all()
+  serializer_class=DicaSerializer
+  permission_classes = (permissions.IsAuthenticated,)
+  authentication_classes = (authentication.TokenAuthentication,)
