@@ -15,11 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from api.views import ListUsers,CustomAuthToken
+from api.views import ListUsers,CustomAuthToken,AlunoViewSet,ProfessorViewSet,RegisterViewSet
+from rest_framework.routers import DefaultRouter
+
+
+
+router=DefaultRouter()
+
+router.register('aluno',AlunoViewSet)
+router.register('professor',ProfessorViewSet)
+router.register('user',RegisterViewSet)
+
+
 
 urlpatterns = [
     path('api/users/', ListUsers.as_view()),
+    path('api/',include(router.urls)),
     path('api/token/auth/',CustomAuthToken.as_view()),
-    path("",include('api.urls')),
+    # path("",include('api.urls')),
     path("admin/", admin.site.urls),
 ]

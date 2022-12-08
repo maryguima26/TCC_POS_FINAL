@@ -9,20 +9,27 @@ class UserSerializer(serializers.ModelSerializer):
     model = User
     fields =['id','username','password']
 
-    extra_kwargs = {'password':{
+    extra_kwargs = {
+      'password':{
       'write_only': True,
       'required': True
-    }}
+    }
+    }
   
   def create(self,validated_data):
-    # user = User.objects.create_user(**validated_data)
-    user=User(username=validated_data['username'])
-    user.set_password(validated_data['password'])
-    user.save()
-    Token.objects.create(user=user)
+    user = User.objects.create_user( 
+      username=validated_data["username"],
+      password=validated_data["password"],
+    # first_name=validated_data["first_name"]
+    )
+    if user is not None:
+      try:
+        token=Token.objects.get(user_id=user.id)
+      except Token.DoesNotExist:
+        token = Token.objects.create(user=user)
     return user
-
-
+    
+  
 class AlunoSerializer(serializers.ModelSerializer):
   class Meta:
     model = Aluno
