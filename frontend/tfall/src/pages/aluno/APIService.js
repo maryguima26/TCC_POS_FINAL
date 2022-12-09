@@ -1,12 +1,13 @@
 export default class APIService {
-  static async GetUser(token) {
-    const resp = await fetch("http://127.0.0.1:8000/api/aluno/", {
+  static async GetUser(body) {
+    const resp = await fetch("http://127.0.0.1:8000/api/token/auth/", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
       },
+      body: JSON.stringify(body),
     });
-    return await resp.json().user;
+    return await resp.json();
   }
 
   // static async UpdateAluno(aluno_id, body, token) {
@@ -31,37 +32,19 @@ export default class APIService {
     });
   }
 
-  static LoginUser(body) {
-    return fetch("http://127.0.0.1:8000/api/token/auth/", {
+  static async LoginUser(body) {
+    const resp = await fetch("http://127.0.0.1:8000/api/token/auth/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
-    }).then((resp) => {
-      // resp.json()
-      if (!resp.ok) {
-        throw Error(resp);
-      }
-      return resp.json();
     });
-  }
-
-  static LoginUser(body) {
-    return fetch("http://127.0.0.1:8000/api/token/auth/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }).then((resp) => {
-      // resp.json()
-      if (!resp.ok) {
-        throw Error(resp);
-      }
-      return resp.json();
-      // console.log(resp);
-    });
+    // resp.json()
+    if (!resp.ok) {
+      throw Error(resp);
+    }
+    return await resp.json();
   }
 
   static async RegisterAluno(body, token) {
@@ -76,19 +59,14 @@ export default class APIService {
     return resp.json();
   }
 
-  static async getUser(body, token) {
-    const resp = await fetch("http://127.0.0.1:8000/api/token/auth/", {
-      method: "GET",
+  static async RegisterUser(body) {
+    const resp = await fetch("http://127.0.0.1:8000/api/user/", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
       },
       body: JSON.stringify(body),
     });
-    // resp.json()
-    if (!resp.ok) {
-      throw Error(resp);
-    }
-    return await resp.json();
+    return resp.json();
   }
 }

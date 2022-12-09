@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import APIService from "../professor/APIService";
+import APIService from "./APIService";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
@@ -7,9 +7,11 @@ import "../../App.css";
 import { CDBCard, CDBCardBody, CDBContainer } from "cdbreact";
 import Icone from "../../new_components/Icone";
 import Navegacao from "../../new_components/Navegacao";
+import Rodape from "../../new_components/Rodape";
 import { CDBFooter, CDBBox, CDBBtn, CDBIcon } from "cdbreact";
 import logo from "../../imgs/logo-sembg.png";
 import Button from "react-bootstrap/Button";
+import { UserContext } from "../../UserContext";
 
 function LoginAluno() {
   const [username, setUsername] = useState("");
@@ -26,7 +28,16 @@ function LoginAluno() {
     try {
       const resp = await APIService.LoginUser(body);
       setToken("mytoken", resp.token);
-      navigate("/aluno");
+      const { data } = APIService.GetUser(body)
+        .then((data) =>
+          navigate(
+            "/aluno"
+            // {
+            //   state: { username: data.username },
+            // }
+          )
+        )
+        .catch((error) => console.log(error));
     } catch (error) {
       alert("Confira seus dados");
     }
@@ -164,35 +175,7 @@ function LoginAluno() {
         </CDBCard>
       </CDBContainer>
 
-      <CDBFooter className="shadow">
-        <CDBBox
-          display="flex"
-          flex="column"
-          className="mx-auto py-5"
-          style={{ width: "90%" }}
-        >
-          <CDBBox display="flex" justifyContent="between" className="flex-wrap">
-            <a href="/" className="d-flex align-items-center p-0 text-dark">
-              <img alt="logo" src={logo} width="50px" />
-              <span className="ml-3 h2 font-weight">TFAll</span>
-            </a>
-            <CDBBox display="flex" className="mt-4">
-              <CDBBtn flat color="dark">
-                <CDBIcon fab icon="facebook-f" />
-              </CDBBtn>
-              <CDBBtn flat color="dark" className="mx-3">
-                <CDBIcon fab icon="twitter" />
-              </CDBBtn>
-              <CDBBtn flat color="dark" className="p-2">
-                <CDBIcon fab icon="instagram" />
-              </CDBBtn>
-            </CDBBox>
-          </CDBBox>
-          <small className="text-center mt-5">
-            &copy; TFAll, 2022. All rights reserved.
-          </small>
-        </CDBBox>
-      </CDBFooter>
+      <Rodape />
     </div>
   );
 }

@@ -34,7 +34,7 @@ function Router() {
           <Route path="/register" element={<Registrese />} />
           <Route path="/professor" element={<Professor />} />
           <Route path="/registroaluno" element={<RegistroAluno />} />
-          <Route path="/aluno" element={<Aluno />} />
+          <Route path="/aluno/*" element={<Aluno />} />
         </Routes>
       </BrowserRouter>
     </CookiesProvider>

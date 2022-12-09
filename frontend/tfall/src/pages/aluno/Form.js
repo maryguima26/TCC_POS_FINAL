@@ -31,7 +31,7 @@ function Form() {
       esporte,
       nivel,
     };
-    APIService.RegisterAluno(body, token["mytoken"]).then(navigate("/aluno"));
+    APIService.RegisterAluno(body, token["mytoken"]).then(navigate("/login2"));
   };
 
   return (
