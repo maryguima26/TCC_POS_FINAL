@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../../App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useCookies } from "react-cookie";
 import {
   useNavigate,
@@ -9,8 +9,9 @@ import {
   Link,
   Route,
   Routes,
-  BrowserRouter,
 } from "react-router-dom";
+
+import { UserContext } from "../../context/UserContext";
 
 import Icone from "../../new_components/Icone";
 import Navegacao from "../../new_components/Navegacao";
@@ -31,7 +32,7 @@ function Aluno() {
   const [token, setToken, removeToken] = useCookies(["mytoken"]);
   let navigate = useNavigate();
   const location = useLocation();
-  const name = location.state;
+  const { user, setUser } = useContext(UserContext);
 
   const logoutBtn = () => {
     removeToken(["mytoken"]);
@@ -68,10 +69,13 @@ function Aluno() {
 
       <CDBContainer>
         <CDBCard style={{ width: "100%" }}>
-          <div className="lead mt-2 py-r border-bottom">{name.username}</div>
+          <div className="lead mt-2 py-r border-bottom">
+            Aluno, {user.username}
+          </div>
+          
           <Row>
             <Col xs="4">
-              <Sidebar username={name["username"]} />
+              <Sidebar username={user["username"]} />
             </Col>
             <Col xs="8">
               <CDBCardBody className="py-1" style={{ padding: "20px" }}>

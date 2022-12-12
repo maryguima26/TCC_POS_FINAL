@@ -6,7 +6,7 @@ function Navegacao() {
   return (
     <Navbar
       className=" mt-0"
-      collapseOnSelected
+      // collapseOnSelected
       expand="sm"
       // bg="dark"
       // variant="dark"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import APIService from "./APIService";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +11,15 @@ import Rodape from "../../new_components/Rodape";
 import { CDBFooter, CDBBox, CDBBtn, CDBIcon } from "cdbreact";
 import logo from "../../imgs/logo-sembg.png";
 import Button from "react-bootstrap/Button";
-import { UserContext } from "../../UserContext";
+import { UserContext } from "../../context/UserContext";
 
 function LoginAluno() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useCookies(["mytoken"]);
   const [isLogin, setLogin] = useState(true);
+  const { user, setUser } = useContext(UserContext);
+
   let navigate = useNavigate();
 
   const loginBtn = async () => {
@@ -26,18 +28,14 @@ function LoginAluno() {
       password,
     };
     try {
-      const resp = await APIService.LoginUser(body);
-      setToken("mytoken", resp.token);
-      const { data } = APIService.GetUser(body)
-        .then((data) =>
-          navigate(
-            "/aluno"
-            // {
-            //   state: { username: data.username },
-            // }
-          )
-        )
-        .catch((error) => console.log(error));
+      const user = await APIService.LoginUser(body);
+      setToken("mytoken", user.token);
+      setUser(user);
+      navigate("/aluno");
+
+      //   const { data } = APIService.GetUser(body)
+      //     .then((data) => navigate("/aluno"))
+      //     .catch((error) => console.log(error));
     } catch (error) {
       alert("Confira seus dados");
     }

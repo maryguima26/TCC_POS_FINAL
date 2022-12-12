@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   useNavigate,
   useLocation,
@@ -6,10 +7,14 @@ import {
   Routes,
   BrowserRouter,
 } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 function SPAInfo() {
-  const location = useLocation();
-  const name = location.state; //
-  return <div>SPAInfo</div>;
+  const { user, setUser } = useContext(UserContext);
+  return (
+    <div>
+      Nome: {user.username}: token:{user.token} email:
+    </div>
+  );
 }
 export default SPAInfo;
