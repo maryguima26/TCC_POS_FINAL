@@ -72,7 +72,7 @@ function Aluno() {
           <div className="lead mt-2 py-r border-bottom">
             Aluno, {user.username}
           </div>
-          
+
           <Row>
             <Col xs="4">
               <Sidebar username={user["username"]} />

@@ -32,24 +32,25 @@ function LoginAluno() {
       setToken("mytoken", user.token);
       setUser(user);
       navigate("/aluno");
-
-      //   const { data } = APIService.GetUser(body)
-      //     .then((data) => navigate("/aluno"))
-      //     .catch((error) => console.log(error));
     } catch (error) {
       alert("Confira seus dados");
     }
   };
 
   const registerBtn = async () => {
+    let is_aluno = true;
+    let is_professor = false;
     const body = {
       username,
       password,
+      is_aluno,
+      is_professor,
     };
     try {
-      const resp1 = await APIService.RegisterUser(body);
-      const resp = await APIService.LoginUser(body);
-      setToken("mytoken", resp.token);
+      const aluno = await APIService.RegisterUser(body);
+      const user = await APIService.LoginUser(body);
+      setToken("mytoken", user.token);
+      setUser(user);
       navigate("/registroaluno");
     } catch (error) {
       alert("Confira seus dados");

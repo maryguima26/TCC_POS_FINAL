@@ -1,9 +1,10 @@
 export default class APIService {
-  static async GetUser(body) {
-    const resp = await fetch("http://127.0.0.1:8000/api/token/auth/", {
-      method: "POST",
+  static async GetAluno(body, token) {
+    const resp = await fetch("http://127.0.0.1:8000/api/aluno/", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
       },
       body: JSON.stringify(body),
     });
@@ -22,15 +23,15 @@ export default class APIService {
   //   return await resp.json();
   // }
 
-  static DeleteAluno(aluno_id, token) {
-    return fetch(`http://127.0.0.1:8000/api/aluno/${aluno_id}/`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
-    });
-  }
+  // static DeleteAluno(aluno_id, token) {
+  //   return fetch(`http://127.0.0.1:8000/api/aluno/${aluno_id}/`, {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Token ${token}`,
+  //     },
+  //   });
+  // }
 
   static async LoginUser(body) {
     const resp = await fetch("http://127.0.0.1:8000/api/token/auth/", {
@@ -56,7 +57,7 @@ export default class APIService {
       },
       body: JSON.stringify(body),
     });
-    return resp.json();
+    return await resp.json();
   }
 
   static async RegisterUser(body) {

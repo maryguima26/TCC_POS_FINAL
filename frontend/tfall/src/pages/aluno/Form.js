@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useCookies } from "react-cookie";
 import APIService from "./APIService";
 import { Button } from "react-bootstrap";
@@ -13,15 +13,20 @@ import {
   CDBLink,
   CDBContainer,
 } from "cdbreact";
+import { UserContext } from "../../context/UserContext";
 
 function Form() {
   const [formValues, setFormValues] = useState({});
   const { nome, email, sexo, peso, altura, idade, esporte, nivel } = formValues;
   const [token, setToken] = useCookies(["mytoken"]);
   let navigate = useNavigate();
+  const { dados, setDados } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-  const insertAluno = () => {
+  const insertAluno = async () => {
+    const usuario = user.user_id;
     const body = {
+      user: usuario,
       nome,
       email,
       sexo,
@@ -31,7 +36,10 @@ function Form() {
       esporte,
       nivel,
     };
-    APIService.RegisterAluno(body, token["mytoken"]).then(navigate("/login2"));
+
+    const dados = await APIService.RegisterAluno(body, token["mytoken"]);
+
+    navigate("/login2");
   };
 
   return (

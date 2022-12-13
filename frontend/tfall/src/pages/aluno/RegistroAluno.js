@@ -1,9 +1,9 @@
 import React from "react";
 
 import "../../App.css";
-import { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useLocation } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 import Icone from "../../new_components/Icone";
 import Navegacao from "../../new_components/Navegacao";
@@ -14,6 +14,7 @@ import Form from "./Form";
 
 const RegistroAluno = () => {
   const [alunos, setAlunos] = useState([]);
+  const { user } = useContext(UserContext);
 
   const insertedInformation = (aluno) => {
     const new_aluno = [...alunos, aluno];
@@ -45,7 +46,9 @@ const RegistroAluno = () => {
       <CDBContainer>
         <CDBCard style={{ width: "100%" }}>
           <CDBCardBody className="py-1" style={{ padding: "20px" }}>
-            <div className="lead mt-2 py-r border-bottom">Olá, Aluno</div>
+            <div className="lead mt-2 py-r border-bottom">
+              Olá, {user.username}
+            </div>
             <br />
             <div>
               {" "}
