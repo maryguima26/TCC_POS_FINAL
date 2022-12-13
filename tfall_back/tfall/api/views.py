@@ -25,14 +25,17 @@ class ListUsers(APIView):
   """
 
   authentication_classes=[authentication.TokenAuthentication]
-  permission_classes=[permissions.IsAuthenticated]
+  permission_classes = (permissions.IsAuthenticated,)
+
 
   def get(self,request,format=None):
     """
     Return a list of all users
     """
     user_id=[user.pk for user in User.objects.all()]
-    return Response(user_id)
+    user_name=[user.username for user in User.objects.all()]
+    
+    return Response(user_name)
 
 class CustomAuthToken(ObtainAuthToken):
   def post(self,request,*args,**kwargs):

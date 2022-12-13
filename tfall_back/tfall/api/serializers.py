@@ -8,7 +8,7 @@ from rest_framework.authtoken.models import Token
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
-    fields =['id','username','password']
+    fields =['id','username','password','is_aluno','is_professor']
 
     extra_kwargs = {
       'password':{
@@ -21,7 +21,8 @@ class UserSerializer(serializers.ModelSerializer):
     user = User.objects.create_user( 
       username=validated_data["username"],
       password=validated_data["password"],
-    # first_name=validated_data["first_name"]
+      is_aluno=validated_data["is_aluno"],
+      is_professor=validated_data["is_professor"]
     )
     if user is not None:
       try:

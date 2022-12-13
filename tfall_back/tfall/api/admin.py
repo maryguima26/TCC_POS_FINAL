@@ -1,10 +1,12 @@
 from django.contrib import admin
 from .models import Aluno,Dicas,Professor,User
+
+
 # Register your models here.
 @admin.register(User)
 class UserModel(admin.ModelAdmin):
-  list_filter=('username','password')
-  list_display=('username','password')
+  list_filter=('username','password','is_aluno','is_professor')
+  list_display=('username','password','is_aluno','is_professor')
 
 @admin.register(Aluno)
 class AlunoModel(admin.ModelAdmin):
