@@ -1,6 +1,7 @@
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+
 from rest_framework import serializers
-from .models import Aluno,Professor,Dicas
+from .models import Aluno,Professor,Dicas,User
 from rest_framework.authtoken.models import Token
 
 

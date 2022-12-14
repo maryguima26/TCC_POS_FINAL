@@ -4,9 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication,permissions,viewsets
 from rest_framework.permissions import AllowAny, IsAdminUser
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from .serializers import AlunoSerializer,DicaSerializer,ProfessorSerializer,UserSerializer
-from .models import Aluno,Dicas,Professor
+from .models import Aluno,Dicas,Professor,User
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token

@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'api',
     'rest_framework',
     'rest_framework.authtoken',
     "corsheaders",
+    'api',
 ]
 
 
@@ -54,6 +54,9 @@ REST_FRAMEWORK = {
     ]
 }
 
+
+AUTH_USER_MODEL='api.User'
+ACCOUNT_UNIQUE_EMAIL = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
