@@ -16,7 +16,12 @@ const Sidebar = (props) => {
       <CDBSidebarContent>
         <CDBSidebarMenu>
           <Link to="/aluno/info">
-            <CDBSidebarMenuItem icon="th-large">Informações</CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="info-circle">
+              Informações
+            </CDBSidebarMenuItem>
+          </Link>
+          <Link to="/aluno/exercicio">
+            <CDBSidebarMenuItem icon="th-large">Atividade</CDBSidebarMenuItem>
           </Link>
           <Link to="/aluno/plano">
             <CDBSidebarMenuItem icon="sticky-note">Plano</CDBSidebarMenuItem>

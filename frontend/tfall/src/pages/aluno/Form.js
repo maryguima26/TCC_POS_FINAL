@@ -13,6 +13,7 @@ import {
   CDBLink,
   CDBContainer,
 } from "cdbreact";
+
 import { UserContext } from "../../context/UserContext";
 
 function Form() {
@@ -20,11 +21,11 @@ function Form() {
   const { nome, email, sexo, peso, altura, idade, esporte, nivel } = formValues;
   const [token, setToken] = useCookies(["mytoken"]);
   let navigate = useNavigate();
-  const { dados, setDados } = useContext(UserContext);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const insertAluno = async () => {
     const usuario = user.user_id;
+
     const body = {
       user: usuario,
       nome,

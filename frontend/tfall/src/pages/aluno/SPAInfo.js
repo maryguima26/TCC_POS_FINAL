@@ -1,19 +1,8 @@
-import { useContext } from "react";
-import {
-  useNavigate,
-  useLocation,
-  Link,
-  Route,
-  Routes,
-  BrowserRouter,
-} from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
-
-function SPAInfo() {
-  const { user, setUser } = useContext(UserContext);
+function SPAInfo(aluno) {
   return (
     <div>
-      Nome: {user.username}: token:{user.token} email:
+      Nome: {aluno.nome}
+      email: {aluno.email}
     </div>
   );
 }

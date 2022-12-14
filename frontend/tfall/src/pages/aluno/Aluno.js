@@ -3,16 +3,10 @@ import React from "react";
 import "../../App.css";
 import { useState, useEffect, useContext } from "react";
 import { useCookies } from "react-cookie";
-import {
-  useNavigate,
-  useLocation,
-  Link,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { useNavigate, Route, Routes } from "react-router-dom";
 
 import { UserContext } from "../../context/UserContext";
-
+import APIService from "./APIService";
 import Icone from "../../new_components/Icone";
 import Navegacao from "../../new_components/Navegacao";
 import Rodape from "../../new_components/Rodape";
@@ -27,12 +21,13 @@ import { CDBCard, CDBCardBody, CDBContainer, CDBBox } from "cdbreact";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import SPAExercicio from "./SPAExercicio";
 
-function Aluno() {
+const Aluno = () => {
   const [token, setToken, removeToken] = useCookies(["mytoken"]);
   let navigate = useNavigate();
-  const location = useLocation();
   const { user, setUser } = useContext(UserContext);
+  const [aluno, setAluno] = useState();
 
   const logoutBtn = () => {
     removeToken(["mytoken"]);
@@ -43,6 +38,15 @@ function Aluno() {
       navigate("/");
     }
   }, [token]);
+
+  const getAlunos = () => {
+    const aluno = APIService.GetAluno(user.user_id, token["mytoken"]);
+  };
+
+  useEffect(() => {
+    getAlunos();
+    console.log(aluno);
+  }, []);
 
   return (
     <div className="App">
@@ -70,7 +74,7 @@ function Aluno() {
       <CDBContainer>
         <CDBCard style={{ width: "100%" }}>
           <div className="lead mt-2 py-r border-bottom">
-            Aluno, {user.username}
+            Olá, {user.username}
           </div>
 
           <Row>
@@ -82,6 +86,7 @@ function Aluno() {
                 <div className="content">
                   <Routes>
                     <Route path="/info" element={<SPAInfo />} />
+                    <Route path="/exercicio" element={<SPAExercicio />} />
                     <Route path="/plano" element={<SPAPlano />} />
                     <Route path="/contato" element={<SPAContato />} />
                     <Route path="/evolucao" element={<SPAEvolucao />} />
@@ -106,5 +111,5 @@ function Aluno() {
       <Rodape />
     </div>
   );
-}
+};
 export default Aluno;

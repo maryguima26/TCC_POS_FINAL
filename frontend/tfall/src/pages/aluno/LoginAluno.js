@@ -107,6 +107,20 @@ function LoginAluno() {
                   />
                 </div>
                 <br />
+                {/* <div className="mb-3">
+                  <label htmlFor="email" className="form-label">
+                    E-mail
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="email"
+                    placeholder="Insira o seu e-mail"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <br /> */}
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label">
                     Senha

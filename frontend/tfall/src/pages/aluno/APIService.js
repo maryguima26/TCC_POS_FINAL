@@ -1,13 +1,15 @@
 export default class APIService {
-  static async GetAluno(body, token) {
-    const resp = await fetch("http://127.0.0.1:8000/api/aluno/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
-      body: JSON.stringify(body),
-    });
+  static async GetAluno(user, token) {
+    const resp = await fetch(
+      `http://127.0.0.1:8000/api/aluno/?search=${user}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
     return await resp.json();
   }
 
