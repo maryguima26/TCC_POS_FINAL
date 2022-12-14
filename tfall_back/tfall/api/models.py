@@ -5,10 +5,6 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import  AbstractUser
 
-
-
-
-
 class User(AbstractUser):
   is_aluno=models.BooleanField(default=False)
   is_professor=models.BooleanField(default=False)
@@ -19,7 +15,6 @@ class User(AbstractUser):
 def create_auth_token(sender,instance=None,created=False, **kwargs):
   if created: 
     Token.objects.create(user=instance)
-
 
 class Aluno(models.Model):
   user    = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
@@ -46,16 +41,18 @@ class Professor(models.Model):
   def __str__(self):
     return f"{self.nome}"
 
-
-
-
 class Dicas(models.Model):
   title = models.CharField(max_length=100)
   description = models.TextField()
   aluno = models.ForeignKey(Aluno,on_delete=models.CASCADE)
+  # professor = models.ForeignKey(Professor,on_delete=models.CASCADE,default='1')
 
   def __str__(self):
     return f"{self.aluno}"
+
+# class Evolucao(models.Model):
+#   title
+#   author
 
  
 

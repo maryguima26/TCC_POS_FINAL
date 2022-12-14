@@ -8,7 +8,7 @@ from rest_framework.authtoken.models import Token
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
-    fields =['id','username','password','is_aluno','is_professor']
+    fields =['id','username','email','password','is_aluno','is_professor']
 
     extra_kwargs = {
       'password':{
@@ -36,6 +36,10 @@ class AlunoSerializer(serializers.ModelSerializer):
   class Meta:
     model = Aluno
     fields = ['id','user','nome','email','sexo','peso','altura','idade','nivel','esporte']
+
+
+
+
 
 class ProfessorSerializer(serializers.ModelSerializer):
   class Meta:

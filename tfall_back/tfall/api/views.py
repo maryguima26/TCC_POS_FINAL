@@ -5,29 +5,17 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import authentication,permissions,viewsets
+from rest_framework import authentication,permissions,viewsets, filters
 from rest_framework.permissions import AllowAny, IsAdminUser
-# from django.contrib.auth.models import User
 from .serializers import AlunoSerializer,DicaSerializer,ProfessorSerializer,UserSerializer
-from .models import Aluno,Dicas,Professor,User
-
+from .models import Aluno,Dicas,Professor,User 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
 
-
-
 class ListUsers(APIView):
-  """
-  View to list of all users in the system
-  *Requires token authentication
-  *Only admin users are able to access this view
-  """
-
   authentication_classes=[authentication.TokenAuthentication]
   permission_classes = (permissions.IsAuthenticated,)
-
-
   def get(self,request,format=None):
     """
     Return a list of all users
@@ -45,9 +33,9 @@ class CustomAuthToken(ObtainAuthToken):
     token,created=Token.objects.get_or_create(user=user)
     return Response({
       'token':token.key,
+      'email':user.email,
       'user_id':user.pk,
       'username':user.username,
-      'first_name':user.first_name
     })
 
 
@@ -73,6 +61,9 @@ class AlunoViewSet(viewsets.ModelViewSet):
   serializer_class=AlunoSerializer
   permission_classes = (permissions.IsAuthenticated,)
   authentication_classes = (authentication.TokenAuthentication,)
+  filter_backends=(filters.SearchFilter,)
+  search_fields=('email',)
+
 
 class ProfessorViewSet(viewsets.ModelViewSet):
   queryset = Professor.objects.all()
