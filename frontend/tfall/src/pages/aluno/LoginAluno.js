@@ -18,7 +18,9 @@ function LoginAluno() {
   const [password, setPassword] = useState("");
   const [token, setToken] = useCookies(["mytoken"]);
   const [isLogin, setLogin] = useState(true);
-  const { user, setUser } = useContext(UserContext);
+  const [user, setUser] = useState([]);
+  // const { user, setUser } = useContext(UserContext);
+  const { user: aluno, setUser: setAluno } = useContext(UserContext);
 
   let navigate = useNavigate();
 
@@ -29,12 +31,19 @@ function LoginAluno() {
     };
     try {
       const user = await APIService.LoginUser(body);
-      setToken("mytoken", user.token);
       setUser(user);
+      setToken("mytoken", user.token);
+      const aluno = await APIService.GetAlunos(user, user.token);
+      setAluno(aluno[0]);
       navigate("/aluno");
     } catch (error) {
+      console.log(error);
       alert("Confira seus dados");
     }
+    // finally {
+    //   console.log(aluno.nome);
+    //   // navigate("/aluno");
+    // }
   };
 
   const registerBtn = async () => {
@@ -50,8 +59,8 @@ function LoginAluno() {
       const aluno = await APIService.RegisterUser(body);
       const user = await APIService.LoginUser(body);
       setToken("mytoken", user.token);
-      setUser(user);
-      navigate("/registroaluno");
+      // setUser(user);
+      // navigate("/registroaluno");
     } catch (error) {
       alert("Confira seus dados");
     }

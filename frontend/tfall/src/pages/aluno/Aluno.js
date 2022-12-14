@@ -27,10 +27,10 @@ const Aluno = () => {
   const [token, setToken, removeToken] = useCookies(["mytoken"]);
   let navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
-  const [aluno, setAluno] = useState();
 
   const logoutBtn = () => {
-    removeToken(["mytoken"]);
+    // removeToken(["mytoken"]);
+    console.log(user);
   };
 
   useEffect(() => {
@@ -38,15 +38,6 @@ const Aluno = () => {
       navigate("/");
     }
   }, [token]);
-
-  const getAlunos = () => {
-    const aluno = APIService.GetAluno(user.user_id, token["mytoken"]);
-  };
-
-  useEffect(() => {
-    getAlunos();
-    console.log(aluno);
-  }, []);
 
   return (
     <div className="App">
@@ -65,6 +56,12 @@ const Aluno = () => {
             padding: 0.5rem 0.5rem;
             font-size: 1.2rem;
           }
+
+          .letter{
+            text-color:#48494B;
+            text-transform: capitalize
+
+          }
         `}
       </style>
 
@@ -74,18 +71,18 @@ const Aluno = () => {
       <CDBContainer>
         <CDBCard style={{ width: "100%" }}>
           <div className="lead mt-2 py-r border-bottom">
-            Olá, {user.username}
+            Olá, <strong className="letter">{user.nome}</strong>
           </div>
 
           <Row>
             <Col xs="4">
-              <Sidebar username={user["username"]} />
+              <Sidebar nome={user["nome"]} />
             </Col>
             <Col xs="8">
               <CDBCardBody className="py-1" style={{ padding: "20px" }}>
                 <div className="content">
                   <Routes>
-                    <Route path="/info" element={<SPAInfo />} />
+                    <Route path="/info" element={<SPAInfo user={user} />} />
                     <Route path="/exercicio" element={<SPAExercicio />} />
                     <Route path="/plano" element={<SPAPlano />} />
                     <Route path="/contato" element={<SPAContato />} />

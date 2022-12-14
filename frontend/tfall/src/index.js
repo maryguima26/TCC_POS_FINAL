@@ -19,15 +19,11 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
-// import { AuthContext } from "./context/AuthContext";
-// import AuthProvider from "./context/AuthContext";
-import { UserContext } from "./context/UserContext";
+import { UserProvider } from "./context/UserProvider";
 
 function Router() {
-  const [user, setUser] = useState(null);
-  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
   return (
-    <UserContext.Provider value={value}>
+    <UserProvider>
       <CookiesProvider>
         <BrowserRouter>
           <Routes>
@@ -46,7 +42,7 @@ function Router() {
           </Routes>
         </BrowserRouter>
       </CookiesProvider>
-    </UserContext.Provider>
+    </UserProvider>
   );
 }
 

@@ -1,7 +1,7 @@
 export default class APIService {
-  static async GetAluno(user, token) {
+  static async GetAlunos(usuario, token) {
     const resp = await fetch(
-      `http://127.0.0.1:8000/api/aluno/?search=${user}`,
+      `http://127.0.0.1:8000/api/aluno/?search=${usuario.username}`,
       {
         method: "GET",
         headers: {
@@ -10,6 +10,9 @@ export default class APIService {
         },
       }
     );
+    if (!resp.ok) {
+      throw Error(resp);
+    }
     return await resp.json();
   }
 
