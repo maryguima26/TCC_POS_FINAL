@@ -3,6 +3,7 @@ import React from "react";
 import "../../App.css";
 import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { UserContext } from "../../context/UserContext";
 
 import Icone from "../../new_components/Icone";
@@ -13,13 +14,10 @@ import { CDBCard, CDBCardBody, CDBContainer } from "cdbreact";
 import Form from "./Form";
 
 const RegistroAluno = () => {
+  const [token, setToken, removeToken] = useCookies(["mytoken"]);
+
   const [alunos, setAlunos] = useState([]);
   const { user } = useContext(UserContext);
-
-  const insertedInformation = (aluno) => {
-    const new_aluno = [...alunos, aluno];
-    setAlunos(new_aluno);
-  };
 
   return (
     <div className="App">
@@ -46,9 +44,7 @@ const RegistroAluno = () => {
       <CDBContainer>
         <CDBCard style={{ width: "100%" }}>
           <CDBCardBody className="py-1" style={{ padding: "20px" }}>
-            <div className="lead mt-2 py-r border-bottom">
-              Olá, {user.username}
-            </div>
+            <div className="lead mt-2 py-r border-bottom">Olá, Aluno(a)</div>
             <br />
             <div>
               {" "}
@@ -56,7 +52,8 @@ const RegistroAluno = () => {
               o plano ideal para você!
             </div>
             <br />
-            <Form insertedInformation={insertedInformation} />
+
+            <Form />
           </CDBCardBody>
         </CDBCard>
       </CDBContainer>

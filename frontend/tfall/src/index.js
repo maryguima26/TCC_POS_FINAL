@@ -13,8 +13,7 @@ import Registrese from "./pages/professor/Registrese";
 import Professor from "./pages/professor/Professor";
 import RegistroAluno from "./pages/aluno/RegistroAluno";
 import Aluno from "./pages/aluno/Aluno";
-import PrivateRoutes from "./Routes/private.routes";
-import PublicRoutes from "./Routes/public.routes";
+
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";

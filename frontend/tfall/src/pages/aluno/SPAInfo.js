@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import React from "react";
+import React, { useContext } from "react";
 import {
   CDBInput,
   CDBCard,
@@ -11,8 +11,14 @@ import {
 } from "cdbreact";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { useNavigate } from "react-router-dom";
+
+import { UserContext } from "../../context/UserContext";
 
 function SPAInfo(props) {
+  const editInfo = () => {
+    alert("Funcionalidade em progresso");
+  };
   return (
     <div>
       <CDBCard style={{ width: "100%" }}>
@@ -59,7 +65,11 @@ function SPAInfo(props) {
               {props.user.nivel}{" "}
             </Col>
           </Row>
-          <CDBBtn color="dark" className="btn-block my-3 mx-0">
+          <CDBBtn
+            color="dark"
+            className="btn-block my-3 mx-0"
+            onClick={editInfo}
+          >
             Editar informações
           </CDBBtn>
         </CDBCardBody>

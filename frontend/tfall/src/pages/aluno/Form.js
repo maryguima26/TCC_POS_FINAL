@@ -4,16 +4,6 @@ import APIService from "./APIService";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-import {
-  CDBInput,
-  CDBCard,
-  CDBCardBody,
-  CDBIcon,
-  CDBBtn,
-  CDBLink,
-  CDBContainer,
-} from "cdbreact";
-
 import { UserContext } from "../../context/UserContext";
 
 function Form() {
@@ -21,7 +11,7 @@ function Form() {
   const { nome, email, sexo, peso, altura, idade, esporte, nivel } = formValues;
   const [token, setToken] = useCookies(["mytoken"]);
   let navigate = useNavigate();
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const insertAluno = async () => {
     const usuario = user.user_id;
@@ -38,9 +28,9 @@ function Form() {
       nivel,
     };
 
-    const dados = await APIService.RegisterAluno(body, token["mytoken"]);
-
-    navigate("/login2");
+    await APIService.RegisterAluno(body, token["mytoken"]);
+    // console.log(carregaEsporte());
+    // navigate("/login2");
   };
 
   return (
@@ -190,12 +180,12 @@ function Form() {
               }
             >
               <option value="0">Selecione o esporte</option>
-              <option value="MUSCULACAO">Musculação</option>
-              <option value="NATACAO">Natação</option>
-              <option value="CORRIDA">Corrida</option>
-              <option value="CICLISMO">Ciclismo</option>
-              <option value="DUATLO">Duatlo</option>
-              <option value="TRIATLO">Triatlo</option>
+              <option value="1">Triatlo</option>
+              <option value="2">Duatlo</option>
+              <option value="3">Corrida</option>
+              <option value="4">Ciclismo</option>
+              <option value="5">Natação</option>
+              <option value="6">Musculação</option>
             </select>
           </div>
           <br />
@@ -223,7 +213,7 @@ function Form() {
           </div>
           <br />
         </div>
-
+        {}
         <Button
           type="button"
           variant="in"

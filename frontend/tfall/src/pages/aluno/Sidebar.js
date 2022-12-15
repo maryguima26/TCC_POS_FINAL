@@ -33,14 +33,14 @@ const Sidebar = (props) => {
               </CDBSidebarMenuItem>
             </Link>
             <Link to="/aluno/exercicio">
-              <CDBSidebarMenuItem icon="th-large">Atividade</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="th-large">Treino</CDBSidebarMenuItem>
             </Link>
             <Link to="/aluno/plano">
               <CDBSidebarMenuItem icon="sticky-note">Plano</CDBSidebarMenuItem>
             </Link>
             <Link to="/aluno/contato">
               <CDBSidebarMenuItem icon="envelope" iconType="solid">
-                Contatar Professor
+                Dicas
               </CDBSidebarMenuItem>
             </Link>
             <Link to="/aluno/evolucao">

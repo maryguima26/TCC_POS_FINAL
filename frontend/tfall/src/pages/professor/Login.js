@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import APIService from "./APIService";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-
+import { UserContext } from "../../context/UserContext";
 import "../../App.css";
 import { CDBCard, CDBCardBody, CDBContainer } from "cdbreact";
 import Icone from "../../new_components/Icone";
@@ -16,6 +16,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [token, setToken] = useCookies(["mytoken"]);
   const [isLogin, setLogin] = useState(true);
+  const { user, setUser } = useContext(UserContext);
   let navigate = useNavigate();
 
   const loginBtn = async () => {
@@ -24,10 +25,12 @@ function Login() {
       password,
     };
     try {
-      const resp = await APIService.LoginUser(body);
-      setToken("mytoken", resp.token);
+      const user = await APIService.LoginUser(body);
+      setUser(user);
+      setToken("mytoken", user.token);
       navigate("/professor");
     } catch (error) {
+      console.log(error);
       alert("Confira seus dados");
     }
   };

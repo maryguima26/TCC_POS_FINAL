@@ -18,8 +18,8 @@ function LoginAluno() {
   const [password, setPassword] = useState("");
   const [token, setToken] = useCookies(["mytoken"]);
   const [isLogin, setLogin] = useState(true);
-  const [user, setUser] = useState([]);
-  // const { user, setUser } = useContext(UserContext);
+  // const [user, setUser] = useState([]);
+  const { user: user, setUser: setUser } = useContext(UserContext);
   const { user: aluno, setUser: setAluno } = useContext(UserContext);
 
   let navigate = useNavigate();
@@ -40,10 +40,6 @@ function LoginAluno() {
       console.log(error);
       alert("Confira seus dados");
     }
-    // finally {
-    //   console.log(aluno.nome);
-    //   // navigate("/aluno");
-    // }
   };
 
   const registerBtn = async () => {
@@ -56,13 +52,13 @@ function LoginAluno() {
       is_professor,
     };
     try {
-      const aluno = await APIService.RegisterUser(body);
+      const registra_aluno = await APIService.RegisterUser(body);
       const user = await APIService.LoginUser(body);
       setToken("mytoken", user.token);
-      // setUser(user);
-      // navigate("/registroaluno");
+      setUser(user);
+      navigate("/registroaluno");
     } catch (error) {
-      alert("Confira seus dados");
+      alert("Um usuário com esse nome já existe");
     }
   };
 
@@ -116,20 +112,6 @@ function LoginAluno() {
                   />
                 </div>
                 <br />
-                {/* <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    E-mail
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="email"
-                    placeholder="Insira o seu e-mail"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <br /> */}
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label">
                     Senha

@@ -29,8 +29,8 @@ const Aluno = () => {
   const { user, setUser } = useContext(UserContext);
 
   const logoutBtn = () => {
-    // removeToken(["mytoken"]);
-    console.log(user);
+    removeToken(["mytoken"]);
+    // console.log(user);
   };
 
   useEffect(() => {
@@ -83,7 +83,10 @@ const Aluno = () => {
                 <div className="content">
                   <Routes>
                     <Route path="/info" element={<SPAInfo user={user} />} />
-                    <Route path="/exercicio" element={<SPAExercicio />} />
+                    <Route
+                      path="/exercicio"
+                      element={<SPAExercicio user={user} />}
+                    />
                     <Route path="/plano" element={<SPAPlano />} />
                     <Route path="/contato" element={<SPAContato />} />
                     <Route path="/evolucao" element={<SPAEvolucao />} />
