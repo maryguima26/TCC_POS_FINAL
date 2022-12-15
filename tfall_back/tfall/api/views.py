@@ -7,8 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication,permissions,viewsets, filters
 from rest_framework.permissions import AllowAny, IsAdminUser
-from .serializers import AlunoSerializer,DicaSerializer,ProfessorSerializer,UserSerializer
-from .models import Aluno,Dicas,Professor,User 
+from .serializers import AlunoSerializer,DicaSerializer,ProfessorSerializer,UserSerializer,EsporteSerializer,CompeticaoSerializer,PlanoSerializer,TreinoSerializer,PerformanceSerializer,EvolucaoSerializer
+from .models import Aluno,Dicas,Professor,User,Esporte,Competicao,Plano,Treino,Performance,Evolucao
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
@@ -62,7 +62,7 @@ class AlunoViewSet(viewsets.ModelViewSet):
   permission_classes = (permissions.IsAuthenticated,)
   authentication_classes = (authentication.TokenAuthentication,)
   filter_backends=(filters.SearchFilter,)
-  search_fields=('email',)
+  search_fields=['user__username']
 
 
 class ProfessorViewSet(viewsets.ModelViewSet):
@@ -76,3 +76,50 @@ class DicaViewSet(viewsets.ModelViewSet):
   serializer_class=DicaSerializer
   permission_classes = (permissions.IsAuthenticated,)
   authentication_classes = (authentication.TokenAuthentication,)
+  filter_backends=(filters.SearchFilter,)
+  search_fields=['aluno__id']
+
+class EsporteViewSet(viewsets.ModelViewSet):
+  queryset = Esporte.objects.all()
+  serializer_class=EsporteSerializer
+  permission_classes = (permissions.IsAuthenticated,)
+  authentication_classes = (authentication.TokenAuthentication,)
+
+
+class CompeticaoViewSet(viewsets.ModelViewSet):
+  queryset = Competicao.objects.all()
+  serializer_class=CompeticaoSerializer
+  permission_classes = (permissions.IsAuthenticated,)
+  authentication_classes = (authentication.TokenAuthentication,)
+
+class PlanoViewSet(viewsets.ModelViewSet):
+  queryset = Plano.objects.all()
+  serializer_class=PlanoSerializer
+  permission_classes = (permissions.IsAuthenticated,)
+  authentication_classes = (authentication.TokenAuthentication,)
+  filter_backends=(filters.SearchFilter,)
+  search_fields=['aluno__id']
+
+class TreinoViewSet(viewsets.ModelViewSet):
+  queryset = Treino.objects.all()
+  serializer_class=TreinoSerializer
+  permission_classes = (permissions.IsAuthenticated,)
+  authentication_classes = (authentication.TokenAuthentication,)
+  filter_backends=(filters.SearchFilter,)
+  search_fields=['plano__aluno__id']
+
+class PerformanceViewSet(viewsets.ModelViewSet):
+  queryset = Performance.objects.all()
+  serializer_class=PerformanceSerializer
+  permission_classes = (permissions.IsAuthenticated,)
+  authentication_classes = (authentication.TokenAuthentication,)
+  filter_backends=(filters.SearchFilter,)
+  search_fields=['aluno__id']
+
+class EvolucaoViewSet(viewsets.ModelViewSet):
+  queryset = Evolucao.objects.all()
+  serializer_class=EvolucaoSerializer
+  permission_classes = (permissions.IsAuthenticated,)
+  authentication_classes = (authentication.TokenAuthentication,)
+  filter_backends=(filters.SearchFilter,)
+  search_fields=['aluno__id']

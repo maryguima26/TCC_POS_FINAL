@@ -16,6 +16,13 @@ def create_auth_token(sender,instance=None,created=False, **kwargs):
   if created: 
     Token.objects.create(user=instance)
 
+
+class Esporte(models.Model):
+  nome = models.CharField(max_length=100)
+  
+  def __str__(self):
+    return f"{self.nome}"
+
 class Aluno(models.Model):
   user    = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
   nome    = models.CharField(max_length=100)
@@ -37,22 +44,68 @@ class Professor(models.Model):
   nome = models.CharField(max_length=100)
   email = models.EmailField(max_length=254)
   
-  
   def __str__(self):
     return f"{self.nome}"
 
+
+
+
+
+class Competicao(models.Model):
+  nome = models.CharField(max_length=100)
+  esporte = models.OneToOneField(Esporte, on_delete=models.CASCADE)
+  data = models.DateField()
+
+  def __str__(self):
+    return f"{self.nome}:{self.data}"
+
+
+
+class Plano(models.Model):
+  descricao = models.CharField(max_length=100)
+  aluno = models.OneToOneField(Aluno,on_delete=models.CASCADE)
+  competicao = models.OneToOneField(Competicao,on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"{self.aluno}:{self.descricao}"
+
+class Treino(models.Model):
+  descricao = models.TextField()
+  plano = models.OneToOneField(Plano, on_delete=models.CASCADE)
+  dia = models.DateField()
+
+  def __str__(self):
+    return f"{self.dia}"
+
+class Performance(models.Model):
+  aluno=models.OneToOneField(Aluno, on_delete=models.CASCADE)
+  tempo = models.IntegerField()
+  quilometragem = models.IntegerField()
+  esforco = models.CharField(max_length=20)
+  treino = models.OneToOneField(Treino, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"{self.treino}"
+
+class Evolucao(models.Model):
+  aluno = models.OneToOneField(Aluno, on_delete=models.CASCADE)
+  descricao = models.CharField(max_length=100)
+  treino = models.OneToOneField(Treino, on_delete = models.PROTECT)
+  
+  def __str__ (self):
+    return f"{self.aluno}:{self.descricao}"
+
 class Dicas(models.Model):
-  title = models.CharField(max_length=100)
   description = models.TextField()
   aluno = models.ForeignKey(Aluno,on_delete=models.CASCADE)
-  # professor = models.ForeignKey(Professor,on_delete=models.CASCADE,default='1')
-
+  evolucao = models.OneToOneField(Evolucao, on_delete=models.CASCADE,null=True)
+  
   def __str__(self):
     return f"{self.aluno}"
 
-# class Evolucao(models.Model):
-#   title
-#   author
+
+
+
 
  
 

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from api.views import ListUsers,CustomAuthToken,AlunoViewSet,ProfessorViewSet,RegisterViewSet,DicaViewSet
+from api.views import ListUsers,CustomAuthToken,AlunoViewSet,ProfessorViewSet,RegisterViewSet,DicaViewSet,EsporteViewSet,CompeticaoViewSet,PlanoViewSet,TreinoViewSet,PerformanceViewSet,EvolucaoViewSet
 from rest_framework.routers import DefaultRouter
 
 
@@ -25,6 +25,14 @@ router.register('dicas',DicaViewSet,basename='dicas')
 router.register('aluno',AlunoViewSet)
 router.register('professor',ProfessorViewSet)
 router.register('user',RegisterViewSet)
+router.register('esporte',EsporteViewSet)
+router.register('competicao',CompeticaoViewSet)
+router.register('plano',PlanoViewSet)
+router.register('treino',TreinoViewSet)
+router.register('performance',PerformanceViewSet)
+router.register('evolucao',EvolucaoViewSet)
+
+
 
 
 

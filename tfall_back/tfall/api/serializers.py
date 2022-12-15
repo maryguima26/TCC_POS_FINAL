@@ -1,7 +1,7 @@
 # from django.contrib.auth.models import User
 
 from rest_framework import serializers
-from .models import Aluno,Professor,Dicas,User
+from .models import Aluno,Professor,Dicas,User, Esporte,Competicao,Plano,Treino,Performance,Evolucao
 from rest_framework.authtoken.models import Token
 
 
@@ -37,10 +37,6 @@ class AlunoSerializer(serializers.ModelSerializer):
     model = Aluno
     fields = ['id','user','nome','email','sexo','peso','altura','idade','nivel','esporte']
 
-
-
-
-
 class ProfessorSerializer(serializers.ModelSerializer):
   class Meta:
     model = Professor
@@ -50,4 +46,41 @@ class ProfessorSerializer(serializers.ModelSerializer):
 class DicaSerializer(serializers.ModelSerializer):
   class Meta:
     model = Dicas
-    fields = ['id','title','description','aluno']
+    fields = ['id','description','aluno']
+
+
+class DicaSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Dicas
+    fields = ['id','description','aluno','evolucao']
+
+
+class EsporteSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Esporte
+    fields = ['id','nome']
+
+class CompeticaoSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Competicao
+    fields = ['id','nome','esporte','data']
+
+class PlanoSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Plano
+    fields = ['id','aluno','competicao']
+
+class TreinoSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Treino
+    fields = ['id','descricao','plano','dia']
+
+class PerformanceSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Performance
+    fields = ['id','aluno','tempo','quilometragem','esforco','treino']
+
+class EvolucaoSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Evolucao
+    fields = ['id','aluno','descricao','treino']
