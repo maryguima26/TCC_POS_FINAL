@@ -14,15 +14,14 @@ const FormPerform = (props) => {
   const { user, setUser } = useContext(UserContext);
 
   const insertPerform = async () => {
-    const usuario = user.user_id;
-
     const body = {
-      aluno: usuario,
+      aluno: 1,
       tempo,
       quilo,
       esforco,
-      treino: props.treino.id,
+      treino: 1,
     };
+    console.log(body);
 
     await APIService.RegisterPerform(body, token["mytoken"]);
   };
@@ -31,18 +30,17 @@ const FormPerform = (props) => {
     <form onSubmit={insertPerform}>
       <div className="container">
         <div className="row align-items-start">
-          <label className="col-sm-2">Tempo: </label>
+          <label className="col-sm-4">Tempo: </label>
           <input
-            className="col-sm-8"
+            className="col-sm-10"
             required
             type="text"
             id="tempo"
             placeholder="Tempo em minutos para terminar o treino"
             value={tempo}
             onChange={(e) =>
-              setFormValues((prevState) => {
+              setFormValues(() => {
                 return {
-                  ...prevState,
                   tempo: e.target.value,
                 };
               })
@@ -52,18 +50,17 @@ const FormPerform = (props) => {
         <br />
 
         <div className="row">
-          <label className="col-sm-2">Email: </label>
+          <label className="col-sm-4">Quilometragem </label>
           <input
-            className="col-sm-8"
+            className="col-sm-10"
             required
             type="text"
             id="quilo"
             placeholder="Quilometragem"
             value={quilo}
             onChange={(e) =>
-              setFormValues((prevState) => {
+              setFormValues(() => {
                 return {
-                  ...prevState,
                   quilo: e.target.value,
                 };
               })
@@ -73,21 +70,20 @@ const FormPerform = (props) => {
         <br />
 
         <div className="row">
-          <label className="col-sm-2">Esforço: </label>
+          <label className="col-sm-4">Esforço: </label>
           <select
             required
-            className="col-sm-8 select-control"
+            className="col-sm-10 select-control"
             value={esforco}
             onChange={(e) =>
-              setFormValues((prevState) => {
+              setFormValues(() => {
                 return {
-                  ...prevState,
                   esforco: e.target.value,
                 };
               })
             }
           >
-            <option value="">Selecione o sexo</option>
+            <option value="">Qual foi o esforço?</option>
             <option value="fácil">Fácil</option>
             <option value="razoável">Razoável</option>
             <option value="intenso">Intenso</option>

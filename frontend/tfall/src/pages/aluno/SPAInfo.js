@@ -11,9 +11,6 @@ import {
 } from "cdbreact";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useNavigate } from "react-router-dom";
-
-import { UserContext } from "../../context/UserContext";
 
 function SPAInfo(props) {
   const editInfo = () => {

@@ -29,8 +29,6 @@ function Form() {
     };
 
     await APIService.RegisterAluno(body, token["mytoken"]);
-    // console.log(carregaEsporte());
-    // navigate("/login2");
   };
 
   return (

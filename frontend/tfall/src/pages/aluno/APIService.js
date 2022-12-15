@@ -52,6 +52,9 @@ export default class APIService {
       },
       body: JSON.stringify(body),
     });
+    if (!resp.ok) {
+      throw Error(resp);
+    }
     return await resp.json();
   }
 
