@@ -17,6 +17,10 @@ class UserSerializer(serializers.ModelSerializer):
     }
     }
   
+  def validated_username(self,value):
+    if User.objects.filter(username__iexact=value).exists():
+      raise serializers.ValidationError("Um usuário com esse nome já existe. Escolha outro nome de usuário")
+    return value 
   def create(self,validated_data):
     user = User.objects.create_user( 
       username=validated_data["username"],
@@ -30,6 +34,7 @@ class UserSerializer(serializers.ModelSerializer):
       except Token.DoesNotExist:
         token = Token.objects.create(user=user)
     return user
+
     
   
 class AlunoSerializer(serializers.ModelSerializer):

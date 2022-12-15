@@ -68,8 +68,8 @@ class AlunoViewSet(viewsets.ModelViewSet):
 class ProfessorViewSet(viewsets.ModelViewSet):
   queryset = Professor.objects.all()
   serializer_class=ProfessorSerializer
-  permission_classes = (permissions.IsAuthenticated,)
-  authentication_classes = (authentication.TokenAuthentication,)
+  permission_classes = ()
+  authentication_classes = ()
 
 class DicaViewSet(viewsets.ModelViewSet):
   queryset = Dicas.objects.all()
@@ -82,15 +82,17 @@ class DicaViewSet(viewsets.ModelViewSet):
 class EsporteViewSet(viewsets.ModelViewSet):
   queryset = Esporte.objects.all()
   serializer_class=EsporteSerializer
-  permission_classes = (permissions.IsAuthenticated,)
-  authentication_classes = (authentication.TokenAuthentication,)
+  permission_classes = ()
+  authentication_classes = ()
+  filter_backends=(filters.SearchFilter,)
+  search_fields=['nome']
 
 
 class CompeticaoViewSet(viewsets.ModelViewSet):
   queryset = Competicao.objects.all()
   serializer_class=CompeticaoSerializer
-  permission_classes = (permissions.IsAuthenticated,)
-  authentication_classes = (authentication.TokenAuthentication,)
+  permission_classes = ()
+  authentication_classes = ()
 
 class PlanoViewSet(viewsets.ModelViewSet):
   queryset = Plano.objects.all()
@@ -98,15 +100,15 @@ class PlanoViewSet(viewsets.ModelViewSet):
   permission_classes = (permissions.IsAuthenticated,)
   authentication_classes = (authentication.TokenAuthentication,)
   filter_backends=(filters.SearchFilter,)
-  search_fields=['aluno__id']
+  search_fields=['aluno__nome']
 
 class TreinoViewSet(viewsets.ModelViewSet):
   queryset = Treino.objects.all()
   serializer_class=TreinoSerializer
-  permission_classes = (permissions.IsAuthenticated,)
-  authentication_classes = (authentication.TokenAuthentication,)
+  permission_classes = ()
+  authentication_classes = ()
   filter_backends=(filters.SearchFilter,)
-  search_fields=['plano__aluno__id']
+  search_fields=['plano__aluno__nome','dia']
 
 class PerformanceViewSet(viewsets.ModelViewSet):
   queryset = Performance.objects.all()

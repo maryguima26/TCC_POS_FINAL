@@ -10,6 +10,7 @@ class User(AbstractUser):
   is_professor=models.BooleanField(default=False)
   def __str__(self):
     return self.username
+  
 
 @receiver(post_save,sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender,instance=None,created=False, **kwargs):
@@ -32,7 +33,7 @@ class Aluno(models.Model):
   altura  = models.IntegerField()
   idade   = models.IntegerField()
   nivel   = models.IntegerField()
-  esporte = models.CharField(max_length=20)
+  esporte = models.OneToOneField(Esporte,on_delete=models.PROTECT)
 
   def __str__(self):
     return f"{self.nome}"
