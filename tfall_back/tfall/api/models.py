@@ -72,14 +72,14 @@ class Plano(models.Model):
 
 class Treino(models.Model):
   descricao = models.TextField()
-  plano = models.OneToOneField(Plano, on_delete=models.CASCADE)
+  plano = models.ForeignKey(Plano, on_delete=models.CASCADE)
   dia = models.DateField()
 
   def __str__(self):
     return f"{self.dia}"
 
 class Performance(models.Model):
-  aluno=models.OneToOneField(Aluno, on_delete=models.CASCADE)
+  aluno=models.ForeignKey(Aluno, on_delete=models.CASCADE)
   tempo = models.IntegerField()
   quilometragem = models.IntegerField()
   esforco = models.CharField(max_length=20)
