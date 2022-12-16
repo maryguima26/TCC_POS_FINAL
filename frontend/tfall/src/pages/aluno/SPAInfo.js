@@ -18,6 +18,23 @@ function SPAInfo(props) {
   };
   return (
     <div>
+      <style type="text/css">
+        {`
+          .btn-in {
+            background-color: #333333;
+            color: white;
+          }
+          .btn-out {
+            background-color: #A52A2A;
+            color: white;
+          }
+
+          .btn-xxl {
+            padding: 0.5rem 0.5rem;
+            font-size: 1.2rem;
+          }
+        `}
+      </style>
       <CDBCard style={{ width: "100%" }}>
         <CDBCardBody className="mx-4">
           <div className="text-center mt-4 mb-2">

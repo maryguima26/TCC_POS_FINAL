@@ -18,7 +18,6 @@ function LoginAluno() {
   const [password, setPassword] = useState("");
   const [token, setToken] = useCookies(["mytoken"]);
   const [isLogin, setLogin] = useState(true);
-  // const [user, setUser] = useState([]);
   const { user: user, setUser: setUser } = useContext(UserContext);
   const { user: aluno, setUser: setAluno } = useContext(UserContext);
 

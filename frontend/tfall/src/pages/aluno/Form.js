@@ -13,7 +13,8 @@ function Form() {
   let navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
 
-  const insertAluno = async () => {
+  const insertAluno = async (e) => {
+    e.preventDefault();
     const usuario = user.user_id;
 
     const body = {
@@ -27,8 +28,13 @@ function Form() {
       esporte,
       nivel,
     };
-
+    console.log(body);
     await APIService.RegisterAluno(body, token["mytoken"]);
+    navigate("/login2");
+    try {
+    } catch (error) {
+      alert("Dados faltantes");
+    }
   };
 
   return (
@@ -211,13 +217,12 @@ function Form() {
           </div>
           <br />
         </div>
-        {}
+
         <Button
-          type="button"
+          type="submit"
           variant="in"
           size="xxl"
           className="border-bottom mb-3"
-          onClick={insertAluno}
         >
           Registrar informações
         </Button>

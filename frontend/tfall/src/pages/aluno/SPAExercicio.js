@@ -26,9 +26,10 @@ function SPAExercicio(props) {
   const [isClicked, setIsClicked] = useState(true);
 
   const obtainTreino = async () => {
-    const treino = await APIService.RetrieveTreino(props.user.nome);
+    const treino = await APIService.RetrieveTreino(props.user.nome, token);
     setTreino(treino);
-    console.log(treino[0].id);
+    console.log(treino);
+    setIsClicked(!isClicked);
   };
 
   const insertPerformance = () => {
@@ -43,24 +44,26 @@ function SPAExercicio(props) {
               <p className="h4"> Treino do dia </p>
               {isClicked ? (
                 <div>
-                  <CDBBtn
-                    color="dark"
-                    className="btn-block my-3 mx-0"
+                  <Button
+                    type="button"
+                    variant="in"
+                    size="xxl"
+                    className="border-bottom mb-3"
                     onClick={obtainTreino}
                   >
-                    Mostrar treino
-                  </CDBBtn>
+                    Mostrar treinos
+                  </Button>
                 </div>
               ) : (
-                <div>{treino[0].descricao}</div>
+                <div>
+                  <div>{treino[0].descricao}</div>
+                  <div className="d-flex flex-column align-items-center">
+                    <FormPerform treino={treino} />
+                  </div>
+                </div>
               )}
             </div>
             {/* <div className="form-row mb-n4">{props.user.nome}</div> */}
-
-            <div className="d-flex flex-column align-items-center">
-              Informe sua performance abaixo:
-              <FormPerform treino={treino} />
-            </div>
           </CDBCardBody>
         </CDBCard>
       </div>
