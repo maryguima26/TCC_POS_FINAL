@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-z9u+b&sbg%i@ze5g_8c(hk_r*-t3wp=!u#67+@pzt&)2o4b7zu
 DEBUG = bool(int(os.environ.get('DEBUG',1)))
 # DEBUG=True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ec2-15-228-156-155.sa-east-1.compute.amazonaws.com','127.0.0.1']
 
 
 # Application definition
@@ -61,7 +61,7 @@ AUTH_USER_MODEL='api.User'
 ACCOUNT_UNIQUE_EMAIL = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3000",'https://main.dh9sfs2zcor0t.amplifyapp.com'
 
 ]
 
@@ -70,11 +70,23 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
 ]
 
 ROOT_URLCONF = "tfall.urls"
