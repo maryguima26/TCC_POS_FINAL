@@ -28,7 +28,7 @@ $VIRTUALENV_BASE_PATH/api/bin/pip install -r $PROJECT_BASE_PATH/tfall/requiremen
 cd $PROJECT_BASE_PATH/tfall/src
 
 # Setup Supervisor to run our uwsgi process.
-cp $PROJECT_BASE_PATH/tfalli/deploy/supervisor_api.conf /etc/supervisor/conf.d/api.conf
+cp $PROJECT_BASE_PATH/tfall/deploy/supervisor_api.conf /etc/supervisor/conf.d/api.conf
 supervisorctl reread
 supervisorctl update
 supervisorctl restart api
