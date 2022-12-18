@@ -28,7 +28,7 @@ function SPAExercicio(props) {
   const obtainTreino = async () => {
     const treino = await APIService.RetrieveTreino(props.user.nome, token);
     setTreino(treino);
-    console.log(treino);
+    // console.log(treino);
     setIsClicked(!isClicked);
   };
 

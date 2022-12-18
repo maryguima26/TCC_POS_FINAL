@@ -37,7 +37,7 @@ export default class APIService {
   }
 
   static async LoginUser(body, token) {
-    const resp = await fetch("http://15.228.156.155:8000/token/auth/", {
+    const resp = await fetch("http://15.228.156.155:8000/api/token/auth/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
