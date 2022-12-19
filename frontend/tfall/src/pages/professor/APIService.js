@@ -1,7 +1,7 @@
 export default class APIService {
   static async UpdateDica(dica_id, body, token) {
     const resp = await fetch(
-      `http://15.228.156.155:8000/api/dicas/${dica_id}/`,
+      `https://15.228.156.155:8000/api/dicas/${dica_id}/`,
       {
         method: "PUT",
         headers: {
@@ -16,7 +16,7 @@ export default class APIService {
   }
 
   static async InsertDica(body, token) {
-    const resp = await fetch("http://15.228.156.155:8000/api/dicas/", {
+    const resp = await fetch("https://15.228.156.155:8000/api/dicas/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export default class APIService {
   }
 
   static DeleteDica(dica_id, token) {
-    return fetch(`http://15.228.156.155:8000/api/dicas/${dica_id}/`, {
+    return fetch(`https://15.228.156.155:8000/api/dicas/${dica_id}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export default class APIService {
   }
 
   static async LoginUser(body, token) {
-    const resp = await fetch("http://15.228.156.155:8000/api/token/auth/", {
+    const resp = await fetch("https://15.228.156.155:8000/api/token/auth/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export default class APIService {
   }
 
   static async RegisterUser(body) {
-    const resp = await fetch("http://15.228.156.155:8000/api/user/", {
+    const resp = await fetch("https://15.228.156.155:8000/api/user/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

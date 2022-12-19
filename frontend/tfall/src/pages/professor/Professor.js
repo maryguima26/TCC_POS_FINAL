@@ -21,7 +21,7 @@ const Professor = () => {
   let navigate = useNavigate();
 
   const getAlunos = () => {
-    fetch("http://15.228.156.155:8000/api/aluno/", {
+    fetch("https://15.228.156.155:8000/api/aluno/", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token ${token["mytoken"]}`,
@@ -37,7 +37,7 @@ const Professor = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://15.228.156.155:8000/api/dicas/", {
+    fetch("https://15.228.156.155:8000/api/dicas/", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token ${token["mytoken"]}`,

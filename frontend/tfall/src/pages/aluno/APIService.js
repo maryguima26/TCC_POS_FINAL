@@ -1,7 +1,7 @@
 export default class APIService {
   static async GetAlunos(usuario, token) {
     const resp = await fetch(
-      `http://15.228.156.155:8000/api/aluno/?search=${usuario.username}`,
+      `https://15.228.156.155:8000/api/aluno/?search=${usuario.username}`,
       {
         method: "GET",
         headers: {
@@ -17,7 +17,7 @@ export default class APIService {
   }
 
   static async LoginUser(body) {
-    const resp = await fetch("http://15.228.156.155:8000/api/token/auth/", {
+    const resp = await fetch("https://15.228.156.155:8000/api/token/auth/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export default class APIService {
   }
 
   static async RegisterAluno(body, token) {
-    const resp = await fetch("http://15.228.156.155:8000/api/aluno/", {
+    const resp = await fetch("https://15.228.156.155:8000/api/aluno/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export default class APIService {
   }
 
   static async RegisterPerform(body, token) {
-    const resp = await fetch("http://15.228.156.155:8000/performance/", {
+    const resp = await fetch("https://15.228.156.155:8000/performance/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export default class APIService {
   }
 
   static async RegisterUser(body) {
-    const resp = await fetch("http://15.228.156.155:8000/api/user/", {
+    const resp = await fetch("https://15.228.156.155:8000/api/user/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default class APIService {
 
   static async RetrieveTreino(nome, token) {
     const resp = await fetch(
-      `http://15.228.156.155:8000/api/treino/?search=${nome}`,
+      `https://15.228.156.155:8000/api/treino/?search=${nome}`,
       {
         method: "GET",
         headers: {
