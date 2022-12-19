@@ -3,9 +3,9 @@
 set -e
 
 # TODO: Set to URL of git repo.
-PROJECT_GIT_URL='https://github.com/TCC_POS'
+PROJECT_GIT_URL='https://github.com/maryguima26/TCC_POS_FINAL'
 
-PROJECT_BASE_PATH='/usr/local/apps/'
+PROJECT_BASE_PATH='/usr/local/apps/TCC_POS_FINAL/tfall_back'
 VIRTUALENV_BASE_PATH='/usr/local/virtualenvs'
 
 # Set Ubuntu Language
