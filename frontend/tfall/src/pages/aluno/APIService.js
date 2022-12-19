@@ -1,7 +1,7 @@
 export default class APIService {
   static async GetAlunos(usuario, token) {
     const resp = await fetch(
-      `http://ec2-54-165-229-139.compute-1.amazonaws.com//api/aluno/?search=${usuario.username}`,
+      `http://ec2-54-165-229-139.compute-1.amazonaws.com/api/aluno/?search=${usuario.username}`,
       {
         method: "GET",
         headers: {
@@ -18,7 +18,7 @@ export default class APIService {
 
   static async LoginUser(body) {
     const resp = await fetch(
-      "http://ec2-54-165-229-139.compute-1.amazonaws.com//api/token/auth/",
+      "http://ec2-54-165-229-139.compute-1.amazonaws.com/api/token/auth/",
       {
         method: "POST",
         headers: {
@@ -36,7 +36,7 @@ export default class APIService {
 
   static async RegisterAluno(body, token) {
     const resp = await fetch(
-      "http://ec2-54-165-229-139.compute-1.amazonaws.com//api/aluno/",
+      "http://ec2-54-165-229-139.compute-1.amazonaws.com/api/aluno/",
       {
         method: "POST",
         headers: {
@@ -51,7 +51,7 @@ export default class APIService {
 
   static async RegisterPerform(body, token) {
     const resp = await fetch(
-      "http://ec2-54-165-229-139.compute-1.amazonaws.com//performance/",
+      "http://ec2-54-165-229-139.compute-1.amazonaws.com/performance/",
       {
         method: "POST",
         headers: {
@@ -69,7 +69,7 @@ export default class APIService {
 
   static async RegisterUser(body) {
     const resp = await fetch(
-      "http://ec2-54-165-229-139.compute-1.amazonaws.com//api/user/",
+      "http://ec2-54-165-229-139.compute-1.amazonaws.com/api/user/",
       {
         method: "POST",
         headers: {
@@ -86,7 +86,7 @@ export default class APIService {
 
   static async RetrieveTreino(nome, token) {
     const resp = await fetch(
-      `http://ec2-54-165-229-139.compute-1.amazonaws.com//api/treino/?search=${nome}`,
+      `http://ec2-54-165-229-139.compute-1.amazonaws.com/api/treino/?search=${nome}`,
       {
         method: "GET",
         headers: {

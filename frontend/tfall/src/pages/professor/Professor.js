@@ -21,7 +21,7 @@ const Professor = () => {
   let navigate = useNavigate();
 
   const getAlunos = () => {
-    fetch("http://ec2-54-165-229-139.compute-1.amazonaws.com//api/aluno/", {
+    fetch("http://ec2-54-165-229-139.compute-1.amazonaws.com/api/aluno/", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token ${token["mytoken"]}`,
@@ -37,7 +37,7 @@ const Professor = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://ec2-54-165-229-139.compute-1.amazonaws.com//api/dicas/", {
+    fetch("http://ec2-54-165-229-139.compute-1.amazonaws.com/api/dicas/", {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token ${token["mytoken"]}`,
