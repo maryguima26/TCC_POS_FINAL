@@ -1,7 +1,7 @@
 set -e
 
 # TODO: Set to URL of git repo.
-PROJECT_GIT_URL='https://github.com/CHANGEME.git'
+PROJECT_GIT_URL='https://github.com/maryguima26/TCC_POS_FINAL.git'
 
 PROJECT_BASE_PATH='/usr/local/apps/tfall'
 
