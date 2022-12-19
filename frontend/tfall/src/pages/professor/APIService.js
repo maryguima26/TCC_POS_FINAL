@@ -10,6 +10,7 @@ export default class APIService {
           // Authorization: `Token 3efdb00ecf3504c8e839a3b97bfb083f2556599c`,
         },
         body: JSON.stringify(body),
+        referrerPolicy: "unsafe_url",
       }
     );
     return await resp.json();
@@ -24,6 +25,7 @@ export default class APIService {
         // Authorization: `Token 3efdb00ecf3504c8e839a3b97bfb083f2556599c`,
       },
       body: JSON.stringify(body),
+      referrerPolicy: "unsafe_url",
     });
     return await resp.json();
   }
@@ -36,7 +38,9 @@ export default class APIService {
         Authorization: `Token ${token}`,
         // Authorization: `Token 3efdb00ecf3504c8e839a3b97bfb083f2556599c`,
       },
-    });
+      referrerPolicy: "unsafe_url",
+    }
+    );
   }
 
   static async LoginUser(body, token) {
@@ -46,6 +50,7 @@ export default class APIService {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
+      referrerPolicy: "unsafe_url",
     });
     // resp.json()
     if (!resp.ok) {
@@ -61,6 +66,7 @@ export default class APIService {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
+      referrerPolicy: "unsafe_url",
     });
     return resp.json();
   }

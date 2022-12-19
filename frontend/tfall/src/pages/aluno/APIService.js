@@ -8,6 +8,7 @@ export default class APIService {
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
         },
+        referrerPolicy: "unsafe_url",
       }
     );
     if (!resp.ok) {
@@ -23,6 +24,7 @@ export default class APIService {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
+      referrerPolicy: "unsafe_url",
     });
     // resp.json()
     if (!resp.ok) {
@@ -39,6 +41,7 @@ export default class APIService {
         Authorization: `Token ${token}`,
       },
       body: JSON.stringify(body),
+      referrerPolicy: "unsafe_url",
     });
     return await resp.json();
   }
@@ -51,6 +54,7 @@ export default class APIService {
         Authorization: `Token ${token}`,
       },
       body: JSON.stringify(body),
+      referrerPolicy: "unsafe_url",
     });
     if (!resp.ok) {
       throw Error(resp);
@@ -65,6 +69,7 @@ export default class APIService {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
+      referrerPolicy: "unsafe_url",
     });
     if (!resp.ok) {
       throw Error(resp);
@@ -81,6 +86,7 @@ export default class APIService {
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
         },
+        referrerPolicy: "unsafe_url",
       }
     );
     if (!resp.ok) {

@@ -26,6 +26,7 @@ const Professor = () => {
         "Content-Type": "application/json",
         Authorization: `Token ${token["mytoken"]}`,
       },
+      referrerPolicy: "unsafe_url",
     })
       .then((resp) => resp.json())
       .then((resp) => setAlunos(resp))
@@ -43,6 +44,7 @@ const Professor = () => {
         Authorization: `Token ${token["mytoken"]}`,
         // Authorization: `Token 3efdb00ecf3504c8e839a3b97bfb083f2556599c`,
       },
+      referrerPolicy: "unsafe_url",
     })
       .then((resp) => resp.json())
       .then((resp) => setDicas(resp))
