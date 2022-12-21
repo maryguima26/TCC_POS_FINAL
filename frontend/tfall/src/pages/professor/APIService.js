@@ -1,7 +1,7 @@
 export default class APIService {
   static async UpdateDica(dica_id, body, token) {
     const resp = await fetch(
-      `http://ec2-54-165-229-139.compute-1.amazonaws.com/api/dicas/${dica_id}/`,
+      `https://maryguima26.pythonanywhere.com/api/dicas/${dica_id}/`,
       {
         method: "PUT",
         headers: {
@@ -17,7 +17,7 @@ export default class APIService {
 
   static async InsertDica(body, token) {
     const resp = await fetch(
-      "http://ec2-54-165-229-139.compute-1.amazonaws.com/api/dicas/",
+      "https://maryguima26.pythonanywhere.com/api/dicas/",
       {
         method: "POST",
         headers: {
@@ -33,7 +33,7 @@ export default class APIService {
 
   static DeleteDica(dica_id, token) {
     return fetch(
-      `http://ec2-54-165-229-139.compute-1.amazonaws.com/api/dicas/${dica_id}/`,
+      `https://maryguima26.pythonanywhere.com/api/dicas/${dica_id}/`,
       {
         method: "DELETE",
         headers: {
@@ -47,7 +47,7 @@ export default class APIService {
 
   static async LoginUser(body, token) {
     const resp = await fetch(
-      "http://ec2-54-165-229-139.compute-1.amazonaws.com/api/token/auth/",
+      "https://maryguima26.pythonanywhere.com/api/token/auth/",
       {
         method: "POST",
         headers: {
@@ -65,7 +65,7 @@ export default class APIService {
 
   static async RegisterUser(body) {
     const resp = await fetch(
-      "http://ec2-54-165-229-139.compute-1.amazonaws.com/api/user/",
+      "https://maryguima26.pythonanywhere.com/api/user/",
       {
         method: "POST",
         headers: {
